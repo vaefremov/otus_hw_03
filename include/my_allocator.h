@@ -4,14 +4,6 @@
 #include <array>
 #include <bitset>
 
-#include <iostream>
-
-#define RED "\033[31m"
-#define GREEN "\033[32m"
-#define YELLOW "\033[33m"
-#define BLUE "\033[34m"
-#define WHITE "\033[37m"
-
 namespace OTUS
 {
 
@@ -104,7 +96,7 @@ struct logging_allocator_common_pool
     logging_allocator_common_pool() 
     {
         m_memory_pool_ptr = getPool<T, SZ>();
-        std::cout << "Allocator constructor with " << m_memory_pool_ptr->n_free() << " " << __PRETTY_FUNCTION__ << std::endl;
+        // std::cout << "Allocator constructor with " << m_memory_pool_ptr->n_free() << " " << __PRETTY_FUNCTION__ << std::endl;
     } 
     ~logging_allocator_common_pool() {};
     template<typename U>
@@ -118,25 +110,25 @@ struct logging_allocator_common_pool
     T* allocate(size_type n)
     {
         auto p = m_memory_pool_ptr->allocate(n);
-        std::cout << GREEN << __PRETTY_FUNCTION__ << " n " << n << " n_free " << m_memory_pool_ptr->n_free() << " " << p << WHITE << std::endl;
+        // std::cout << GREEN << __PRETTY_FUNCTION__ << " n " << n << " n_free " << m_memory_pool_ptr->n_free() << " " << p << WHITE << std::endl;
         return p;
     }
     void deallocate(T* p, size_type n)
     {
-        std::cout << RED << __PRETTY_FUNCTION__ << " " << p << " " << n <<  WHITE << std::endl;
+        // std::cout << RED << __PRETTY_FUNCTION__ << " " << p << " " << n <<  WHITE << std::endl;
         m_memory_pool_ptr->deallocate(p, n);
     }
 
     template<typename U, typename...Args>
     void construct(U* p, Args&& ...args)
     {
-        std::cout << BLUE << __PRETTY_FUNCTION__ << WHITE << std::endl;
+        // std::cout << BLUE << __PRETTY_FUNCTION__ << WHITE << std::endl;
         new(p) U(std::forward<Args>(args)...);
     }
     template<typename U, typename...Args>
     void destroy(U* p)
     {
-        std::cout << YELLOW << __PRETTY_FUNCTION__ << WHITE << std::endl;
+        // std::cout << YELLOW << __PRETTY_FUNCTION__ << WHITE << std::endl;
         p->~U();
     }
 

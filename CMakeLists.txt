@@ -15,6 +15,8 @@ find_package(Threads REQUIRED)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+add_subdirectory(benchmark)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
 add_library(utilities src/my_container.cpp)
@@ -44,6 +46,23 @@ target_link_libraries(test_allocator
     ${GTEST_MAIN_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
 )
+
+add_executable(benchmark_allocator tests/benchmark_allocator.cpp)
+target_include_directories(benchmark_allocator
+    PRIVATE 
+    "include"
+    "src"
+    "${CMAKE_BINARY_DIR}" "${CMAKE_HOME_DIRECTORY}"
+    "${GTEST_INCLUDE_DIR}"
+)
+target_link_libraries(benchmark_allocator
+    utilities
+    ${GTEST_LIBRARIES}
+    ${GTEST_MAIN_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+    benchmark::benchmark
+)
+
 
 
 enable_testing()
