@@ -43,3 +43,16 @@ TEST(MyAllocator, allocating_map)
         ASSERT_EQ(e.second, m[e.first]);
     }
 }
+
+TEST(MyAllocator, equality)
+{
+    auto al1 = OTUS::logging_allocator_common_pool<int, 42>();
+    auto al2 = OTUS::logging_allocator_common_pool<int, 42>();
+    ASSERT_TRUE(al1 == al2);
+    auto al_diff = OTUS::logging_allocator_common_pool<int, 10>();
+    ASSERT_FALSE(al1 == al_diff);
+    ASSERT_TRUE(al1 != al_diff);
+    auto al_diff1 = OTUS::logging_allocator_common_pool<std::pair<int, int>, 10>();
+    ASSERT_FALSE(al_diff1 == al_diff);
+    ASSERT_TRUE(al_diff1 != al_diff);
+}

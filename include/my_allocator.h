@@ -134,4 +134,21 @@ struct logging_allocator_common_pool
     std::shared_ptr<MemoryPool<T, SZ>> m_memory_pool_ptr;
 };
 
+template <typename T, typename U,  size_t SZ1=DEFAULT_POOL_SZ, size_t SZ2=DEFAULT_POOL_SZ>
+bool operator==(logging_allocator_common_pool<T, SZ1> const&, logging_allocator_common_pool<U, SZ2> const&) noexcept
+{
+    // Should have used if constexpr here!
+    if  (std::is_same<T, U>::value && SZ1 == SZ2)
+    {
+        return true;
+    }
+    return false;    
+}
+
+template <typename T, typename U,  size_t SZ1=DEFAULT_POOL_SZ, size_t SZ2=DEFAULT_POOL_SZ>
+bool operator!=(logging_allocator_common_pool<T, SZ1> const& x, logging_allocator_common_pool<U, SZ2> const& y) noexcept
+{
+    return !(x == y);
+}
+
 }
