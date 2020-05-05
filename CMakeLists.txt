@@ -47,6 +47,36 @@ target_link_libraries(test_allocator
     ${CMAKE_THREAD_LIBS_INIT}
 )
 
+add_executable(test_container tests/test_container.cpp)
+target_include_directories(test_container
+    PRIVATE 
+    "include"
+    "src"
+    "${CMAKE_BINARY_DIR}" "${CMAKE_HOME_DIRECTORY}"
+    "${GTEST_INCLUDE_DIR}"
+)
+target_link_libraries(test_container
+    utilities
+    ${GTEST_LIBRARIES}
+    ${GTEST_MAIN_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+)
+
+add_executable(test_factorial tests/test_factorial.cpp)
+target_include_directories(test_factorial
+    PRIVATE 
+    "include"
+    "src"
+    "${CMAKE_BINARY_DIR}" "${CMAKE_HOME_DIRECTORY}"
+    "${GTEST_INCLUDE_DIR}"
+)
+target_link_libraries(test_factorial
+    utilities
+    ${GTEST_LIBRARIES}
+    ${GTEST_MAIN_LIBRARIES}
+    ${CMAKE_THREAD_LIBS_INIT}
+)
+
 add_executable(benchmark_allocator tests/benchmark_allocator.cpp)
 target_include_directories(benchmark_allocator
     PRIVATE 
