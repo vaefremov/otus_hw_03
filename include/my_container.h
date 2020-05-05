@@ -21,14 +21,18 @@ template <typename T>
 struct SimplisticContainerIterator {
 
     using value_type = T;
-    using pointer = const T*;
-    using reference = const T&;
+    using pointer = T*;
+    using const_pointer = const T*;
+    using reference = T&;
+    using const_reference = const T&;
     using iterator_category = std::forward_iterator_tag;
-
+    using difference_type = std::ptrdiff_t;
 
     SimplisticContainerIterator() = default;
 
-    SimplisticContainerIterator(Node<T>* p_node) : m_node(p_node) {};
+    explicit SimplisticContainerIterator(Node<T>* p_node) : m_node(p_node) {};
+    SimplisticContainerIterator(const SimplisticContainerIterator&) = default;
+    SimplisticContainerIterator& operator=(const SimplisticContainerIterator&) = default;
 
     reference operator*() const 
     {
@@ -37,13 +41,13 @@ struct SimplisticContainerIterator {
 
     pointer operator->() const 
     {
-        return &(m_node->second);
+        return &(m_node->first);
     }
-
+    // Prefix ++
     SimplisticContainerIterator<T>& operator++() {
         if (m_node != nullptr) 
         {
-        m_node = m_node->second;
+            m_node = m_node->second;
         }
         return *this;
     }
@@ -96,16 +100,16 @@ class SimplisticContainer
         }
         ++m_count;
     }
-    const T& front() const
+    const T& front() const noexcept
     {
         return m_head->first;
     }
 
-    const T& back() const
+    const T& back() const noexcept
     {
         return m_tail->first;
     }
-    const NAllocator& get_allocator() const
+    const NAllocator& get_allocator() const noexcept
     {
         return m_alloc;
     }
