@@ -114,7 +114,7 @@ class SimplisticContainer
         return SimplisticContainerIterator<T>(m_head);
     }
 
-    SimplisticContainerIterator<T> end() noexcept {
+    SimplisticContainerIterator<T> end() const noexcept {
         return SimplisticContainerIterator<T>();
     }
 
