@@ -37,6 +37,17 @@ TEST(MyContainer, iterator)
     {
         ASSERT_EQ(*ite, *it);
     }
+    std::vector<std::pair<int, int>> exp_v1{{1, 2}, {3, 4}, {5, 6}};
+    OTUS::SimplisticContainer<std::pair<int, int>> c1;
+    c1.push_back({1, 2});
+    c1.push_back({3, 4});
+    c1.push_back({5, 6});
+    auto ite1 = exp_v1.cbegin();
+    for(auto it = c1.begin(); it != c1.end(); ++it, ++ite1)
+    {
+        ASSERT_EQ(ite1->first, it->first);
+        ASSERT_EQ(ite1->second, it->second);
+    }
 }
 
 TEST(MyContainer, stl_compat)
