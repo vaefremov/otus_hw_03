@@ -81,7 +81,7 @@ std::shared_ptr<MemoryPool<T, SZ>> getPool()
     return shmp;
 }
 
-template<typename T, int SZ=DEFAULT_POOL_SZ>
+template<typename T, size_t SZ=DEFAULT_POOL_SZ>
 struct logging_allocator_common_pool
 {
     using value_type = T;
