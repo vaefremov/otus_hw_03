@@ -98,9 +98,8 @@ struct logging_allocator_common_pool
         m_memory_pool_ptr = getPool<T, SZ>();
         // std::cout << "Allocator constructor with " << m_memory_pool_ptr->n_free() << " " << __PRETTY_FUNCTION__ << std::endl;
     } 
-    ~logging_allocator_common_pool() {};
-    template<typename U>
-    logging_allocator_common_pool(const logging_allocator_common_pool<U>& other) = delete;
+    ~logging_allocator_common_pool() = default;
+    logging_allocator_common_pool(const logging_allocator_common_pool<T, SZ>& other) = default;
 
     size_type max_size() const 
     {
