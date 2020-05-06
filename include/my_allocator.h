@@ -3,6 +3,7 @@
 #include <memory>
 #include <array>
 #include <bitset>
+#include <limits>
 
 namespace OTUS
 {
