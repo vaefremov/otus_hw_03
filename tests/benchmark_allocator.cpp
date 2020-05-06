@@ -46,21 +46,6 @@ static void BM_my_alloc(benchmark::State& state)
         }
         ptrs.clear();
     }
-
-//     const size_t n_allocations = 100;
-//     for(auto _: state)
-//     {
-//         auto stda = OTUS::logging_allocator_common_pool<int, n_allocations>();
-//         for (size_t i = 0; i < n_allocations; i++)
-//         {
-//             stda.allocate(1);
-//         }
-//         for (size_t i = 0; i < n_allocations; i++)
-//         {
-//             stda.allocate(1);
-//         }
-        
-//     }
 }
 BENCHMARK(BM_my_alloc);
 
