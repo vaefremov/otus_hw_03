@@ -1,6 +1,7 @@
 #include "my_allocator.h"
 #include <gtest/gtest.h>
 #include <iostream>
+#include <map>
 
 TEST(MemoryPool, shared_pool)
 {
