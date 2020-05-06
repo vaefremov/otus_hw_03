@@ -97,3 +97,17 @@ target_link_libraries(benchmark_allocator
 
 enable_testing()
 add_test(test_allocator bin/test_allocator)
+add_test(test_container bin/test_container)
+add_test(test_factorial bin/test_factorial)
+
+install(TARGETS allocator RUNTIME DESTINATION bin)
+
+set(CPACK_GENERATOR DEB)
+
+set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+
+set(CPACK_PACKAGE_CONTACT vefremov@gmail.com)
+
+include(CPack)
