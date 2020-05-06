@@ -19,18 +19,18 @@ add_subdirectory(benchmark)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
 
-add_library(utilities src/my_container.cpp)
-target_include_directories(utilities
-    PRIVATE "${CMAKE_BINARY_DIR}"
-    "include"
-)
+# add_library(utilities src/my_container.cpp)
+# target_include_directories(utilities
+#     PRIVATE "${CMAKE_BINARY_DIR}"
+#     "include"
+# )
 
 add_executable(allocator src/main.cpp)
 target_include_directories(allocator
     PRIVATE 
     "include"
 )
-target_link_libraries(allocator PRIVATE utilities)
+# target_link_libraries(allocator PRIVATE utilities)
 
 add_executable(test_allocator tests/test_allocator.cpp)
 target_include_directories(test_allocator
@@ -41,7 +41,7 @@ target_include_directories(test_allocator
     "${GTEST_INCLUDE_DIR}"
 )
 target_link_libraries(test_allocator
-    utilities
+    # utilities
     ${GTEST_LIBRARIES}
     ${GTEST_MAIN_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
@@ -56,7 +56,7 @@ target_include_directories(test_container
     "${GTEST_INCLUDE_DIR}"
 )
 target_link_libraries(test_container
-    utilities
+    # utilities
     ${GTEST_LIBRARIES}
     ${GTEST_MAIN_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
@@ -71,7 +71,7 @@ target_include_directories(test_factorial
     "${GTEST_INCLUDE_DIR}"
 )
 target_link_libraries(test_factorial
-    utilities
+    # utilities
     ${GTEST_LIBRARIES}
     ${GTEST_MAIN_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
@@ -86,7 +86,7 @@ target_include_directories(benchmark_allocator
     "${GTEST_INCLUDE_DIR}"
 )
 target_link_libraries(benchmark_allocator
-    utilities
+    # utilities
     ${GTEST_LIBRARIES}
     ${GTEST_MAIN_LIBRARIES}
     ${CMAKE_THREAD_LIBS_INIT}
