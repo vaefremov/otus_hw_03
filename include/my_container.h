@@ -65,7 +65,7 @@ struct SimplisticContainerIterator {
 };
 
 template<typename T, typename A = std::allocator<T>>
-class SimplisticContainer
+class SimplisticContainer final
 {
     public:
     using NAllocator = typename A::template rebind <Node<T>>::other;
@@ -81,7 +81,7 @@ class SimplisticContainer
             m_head = next;
         }
     }
-    size_t size()
+    size_t size() const
     {
         return m_count;
     }

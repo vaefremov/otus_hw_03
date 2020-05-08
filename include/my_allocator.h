@@ -108,8 +108,7 @@ struct logging_allocator_common_pool
 
     T* allocate(size_type n)
     {
-        auto p = m_memory_pool_ptr->allocate(n);
-        return p;
+        return m_memory_pool_ptr->allocate(n);
     }
     void deallocate(T* p, size_type n)
     {
