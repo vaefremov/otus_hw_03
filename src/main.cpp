@@ -6,7 +6,7 @@
 #include <iostream>
 
 template<typename K, typename V, typename L, typename A>
-static void print_map(std::ostream& out, const std::map<K, V, L, A>& m)
+static void print_map(const std::map<K, V, L, A>& m, std::ostream& out = std::cout)
 {
     for(auto el: m)
     {
@@ -15,7 +15,7 @@ static void print_map(std::ostream& out, const std::map<K, V, L, A>& m)
 }
 
 template<typename T, typename A>
-static void print_list(std::ostream& out,  OTUS::SimplisticContainer<T, A>& c)
+static void print_list(OTUS::SimplisticContainer<T, A>& c, std::ostream& out = std::cout)
 {
     for(auto it = c.begin(); it != c.end(); ++it)
     {
@@ -31,14 +31,14 @@ int main()
     {
         m_stl[i] = OTUS::factorial(i);
     }
-    print_map(std::cout, m_stl);
+    print_map(m_stl);
 
     std::map<int, int, std::less<int>, OTUS::logging_allocator_common_pool<std::pair<const int, int>, 10>> m_my;
     for (size_t i = 0; i < LIMIT; i++)
     {
         m_my[i] = OTUS::factorial(i);
     }
-    print_map(std::cout, m_my);
+    print_map(m_my);
 
     OTUS::SimplisticContainer<int> c_stl;
     for (size_t i = 0; i < LIMIT; i++)
@@ -52,8 +52,8 @@ int main()
         c_my.push_back(i);
     }
 
-    print_list(std::cout, c_stl);
-    print_list(std::cout, c_my);
+    print_list(c_stl);
+    print_list(c_my);
 
     return 0;
 }
