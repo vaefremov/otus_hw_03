@@ -7,7 +7,7 @@
 namespace OTUS
 {
 
-constexpr int factorial(int n) {
+inline int factorial(int n) {
     if(n > 12)
     {
         throw std::invalid_argument("Factorial: argument is too large");
